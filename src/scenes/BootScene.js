@@ -8,29 +8,38 @@ export default class BootScene extends Phaser.Scene {
       frameWidth: 128,
       frameHeight: 132,
     });
-
-    this.load.image('floor1', 'assets/map/floor1.png');
-    this.load.image('floor2', 'assets/map/floor2.png');
-    this.load.image('wall1',  'assets/map/wall1.png');
-    this.load.image('wall2',  'assets/map/wall2.png');
-
-    // Núcleo (objetivo) — imagen estática, animada por tween
+    this.load.spritesheet('enemy', 'assets/enemy.png', {
+      frameWidth: 194,
+      frameHeight: 194,
+    });
+    this.load.image('pieza',  'assets/pieza.png');
     this.load.image('nucleo', 'assets/map/nucleo.png');
 
-    // Decoración sin colisión
-    this.load.image('rubble', 'assets/map/rubble.png');
-    this.load.image('rocks',  'assets/map/rocks.png');
-    this.load.image('bush',   'assets/map/bush.png');
-    this.load.image('circle', 'assets/map/circle.png');
-    this.load.image('column', 'assets/map/column.png');
+    this.load.image('ts-grass2',      'assets/tilesets/Grass 2 layer.png');
+    this.load.image('ts-grass',       'assets/tilesets/Grass.png');
+    this.load.image('ts-plants',      'assets/tilesets/Plants.png');
+    this.load.image('ts-plantshadow', 'assets/tilesets/PlantShadow.png');
+    this.load.image('ts-portal',      'assets/tilesets/portal-Sheet.png');
+    this.load.image('ts-props',       'assets/tilesets/Props.png');
+    this.load.image('ts-wall',        'assets/tilesets/Wall.png');
 
-    // Obstáculos con colisión
-    this.load.image('statue', 'assets/map/statue.png');
-    this.load.image('pillar', 'assets/map/pillar.png');
-    this.load.image('tree',   'assets/map/tree.png');
+    this.load.tilemapTiledJSON('mapa1', 'assets/maps/mapa1.json');
+    this.load.tilemapTiledJSON('mapa2', 'assets/maps/mapa2.json');
+    this.load.tilemapTiledJSON('mapa3', 'assets/maps/mapa3.json');
+
+    // Audio
+    this.load.audio('bgm',          'assets/audio/fondo.mp3');
+    this.load.audio('sfx-shot',     'assets/audio/flecha.mp3');
+    this.load.audio('sfx-fireball', 'assets/audio/dragon.mp3');
+    this.load.audio('sfx-piece',    'assets/audio/piezas.mp3');
+    this.load.audio('sfx-walk',     'assets/audio/caminar.mp3');
+    this.load.audio('sfx-portal',   'assets/audio/portal.mp3');
+    this.load.audio('sfx-victory',  'assets/audio/victoria.mp3');
   }
 
   create() {
+    this.registry.set('vidas',  3);
+    this.registry.set('piezas', 0);
     this.scene.start('MenuScene');
   }
 }
